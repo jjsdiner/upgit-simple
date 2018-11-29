@@ -49,6 +49,8 @@ func main() {
 func showHelp() {
 	fmt.Println("usage: upgit [--version] [--help]")
 	fmt.Println("<command> [<args>]")
+	fmt.Println("Commands:")
+	fmt.Println("   list [state]      List issues on the repo, [all|open|closed]"   )
 	os.Exit(0)
 }
 
