@@ -26,12 +26,18 @@ func main() {
 	} else {
 		switch os.Args[1] {
 		case "list":
-			result, err := github.ListIssues()
+			issueStat4 := "all"
+			if len(os.Args) >2{
+				issueStat4 = os.Args[2]
+			}
+			result, err := github.ListIssues(issueStat4)
 			if err != nil {
 				log.Fatal(err)
 				os.Exit(1)
 			}
-			fmt.Println((*result)[0])
+			for _, issue := range *result{
+				fmt.Printf("%d\t%-50s\t%s\t%s\n", issue.Number, issue.Title, issue.User.Login, issue.HTMLURL)
+			}
 
 		default:
 			showHelp()

@@ -7,8 +7,8 @@ import (
 )
 
 //ListIssues queries the GitHub issue tracker and returns all issue on our repo.
-func ListIssues() (*IssuesListResult, error) {
-	resp, err := http.Get(IssuesListURL + "?")
+func ListIssues(stat4 string) (*IssuesListResult, error) {
+	resp, err := http.Get(IssuesListURL + "?state=" + stat4)
 	if err != nil {
 		return nil, err
 	}
