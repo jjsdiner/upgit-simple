@@ -2,8 +2,10 @@
 package main
 
 import (
+	"book/ch4/upgit/github"
 	"flag"
 	"fmt"
+	"log"
 	"os"
 )
 
@@ -23,7 +25,13 @@ func main() {
 		showHelp()
 	} else {
 		switch os.Args[1] {
-
+		case "list":
+			result, err := github.ListIssues()
+			if err != nil {
+				log.Fatal(err)
+				os.Exit(1)
+			}
+			fmt.Println((*result)[0])
 
 		default:
 			showHelp()

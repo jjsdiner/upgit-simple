@@ -2,12 +2,9 @@ package github
 
 import "time"
 
-const IssuesListURL = "https://api.github.com/repos/jjsdiner/upgit-simple/issues?"
+const IssuesListURL = "https://api.github.com/repos/jjsdiner/upgit-simple/issues"
 
-type IssuesListResult struct {
-	TotalCount int `json:"total_count"`
-	Items      []*Issue
-}
+type IssuesListResult []*Issue
 
 type Issue struct {
 	Number    int

@@ -4,14 +4,11 @@ import (
 	"encoding/json"
 	"fmt"
 	"net/http"
-	"net/url"
-	"strings"
 )
 
 //ListIssues queries the GitHub issue tracker and returns all issue on our repo.
-func ListIssues(terms []string) (*IssuesListResult, error) {
-	q := url.QueryEscape(strings.Join(terms, " "))
-	resp, err := http.Get(IssuesListURL + "?q=" + q)
+func ListIssues() (*IssuesListResult, error) {
+	resp, err := http.Get(IssuesListURL + "?")
 	if err != nil {
 		return nil, err
 	}
