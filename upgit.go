@@ -7,6 +7,7 @@ import (
 	"fmt"
 	"log"
 	"os"
+	"strings"
 )
 
 func main() {
@@ -26,18 +27,13 @@ func main() {
 	} else {
 		switch os.Args[1] {
 		case "list":
-			issueStat4 := "all"
+			issueStatus := "all"
 			if len(os.Args) >2{
-				issueStat4 = os.Args[2]
+				issueStatus = os.Args[2]
+				issueStatus = validateListArgument(issueStatus)
 			}
-			result, err := github.ListIssues(issueStat4)
-			if err != nil {
-				log.Fatal(err)
-				os.Exit(1)
-			}
-			for _, issue := range *result{
-				fmt.Printf("%d\t%-50s\t%s\t%s\n", issue.Number, issue.Title, issue.User.Login, issue.HTMLURL)
-			}
+			displayIssues(issueStatus)
+
 
 		default:
 			showHelp()
@@ -46,11 +42,32 @@ func main() {
 
 }
 
+func validateListArgument(userArgument string) (validatedArgument string){
+	userText := strings.ToLower(userArgument)
+	switch userText {
+	case "all", "open","closed":
+		return userText
+	default:
+		return "all"
+	}
+}
+
+func displayIssues(issueStatus string){
+	result, err := github.ListIssues(issueStatus)
+	if err != nil {
+		log.Fatal(err)
+		os.Exit(1)
+	}
+	for _, issue := range *result{
+		fmt.Printf("%d\t%-50s\t%s\t%s\n", issue.Number, issue.Title, issue.User.Login, issue.HTMLURL)
+	}
+}
+
 func showHelp() {
 	fmt.Println("usage: upgit [--version] [--help]")
 	fmt.Println("<command> [<args>]")
 	fmt.Println("Commands:")
-	fmt.Println("   list [state]      List issues on the repo, [all|open|closed]"   )
+	fmt.Println("   list [state]      List issues on the repo, [all|open|closed] "   )
 	os.Exit(0)
 }
 
