@@ -19,12 +19,13 @@ func validateListArgument(userArgument string) (validatedArgument string){
 }
 
 func displayIssues(issueStatus string){
-	result, err := github.ListIssues(issueStatus)
+	result, err := github.ListIssueSummaries(issueStatus)
 	if err != nil {
 		log.Fatal(err)
 		os.Exit(1)
 	}
 	for _, issue := range *result{
-		fmt.Printf("%d\t%-50s\t%s\t%s\n", issue.Number, issue.Title, issue.User.Login, issue.HTMLURL)
+		fmt.Printf("%d\t%-50s\t%s\t%s\t", issue.Number, issue.Title, issue.User.Login, issue.HTMLURL)
+		fmt.Printf( "%s\n", issue.CreatedAt.Format("2006-01-02T15:04:05"))
 	}
 }
