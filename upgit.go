@@ -56,6 +56,6 @@ func showHelp() {
 }
 
 func showVersion() {
-	fmt.Println("upgit version 0.1")
+	fmt.Println("upgit version 0.1.1")
 	os.Exit(0)
 }
