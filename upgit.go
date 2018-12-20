@@ -38,7 +38,16 @@ func main() {
 			} else {
 				showHelp()
 			}
-
+		case "create":
+			issueTitle := ""
+			switch len(os.Args){
+			case 3: {
+				issueTitle = os.Args[2]
+			}
+			default:
+				showHelp()
+			}
+			createNewIssue(issueTitle)
 		default:
 			showHelp()
 		}
@@ -46,15 +55,18 @@ func main() {
 
 }
 
+//Writes out the help information for the application
 func showHelp() {
 	fmt.Println("usage: upgit [--version] [--help]")
 	fmt.Println("<command> [<args>]")
 	fmt.Println("Commands:")
-	fmt.Println("   list [state]      List issues on the repo, [all|open|closed] ")
-	fmt.Println("   read [issueID]   Displays the details of an issue by ID")
+	fmt.Println("   list [state]      List issues on the repo, [all|open|closed]")
+	fmt.Println("   read [issueNumber]   Displays the details of an issue by number")
+	fmt.Println("   create ['Issue Title'] Creates a new issue, opens vi to add description")
 	os.Exit(0)
 }
 
+//Returns the current version number
 func showVersion() {
 	fmt.Println("upgit version 0.1.1")
 	os.Exit(0)

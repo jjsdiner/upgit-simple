@@ -29,7 +29,7 @@ func ListIssueSummaries(state string) (*IssuesListResult, error) {
 }
 
 //GetIssueDetails queries the GitHub API and gets detailed information on specific issue.
-func GetIssueDetails(issueNumber string) (*IssueDetailsResult, error){
+func GetIssueDetails(issueNumber string) (*IssueDetailsResult, error) {
 	resp, err := http.Get(IssuesURL + "/" + issueNumber)
 	if err != nil {
 		return nil, err
