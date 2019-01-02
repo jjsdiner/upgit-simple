@@ -1,7 +1,6 @@
 package github
 
 import (
-	"book/ch4/github"
 	"bytes"
 	"encoding/json"
 	"fmt"
@@ -18,7 +17,7 @@ func CreateIssue (issue *NewIssue) (*IssueDetailsResult, error){
 		log.Fatal(err)
 		os.Exit(1)
 	}
-	req, err := http.NewRequest("POST", github.IssuesURL, bytes.NewBuffer(issueJson))
+	req, err := http.NewRequest("POST", IssuesURL, bytes.NewBuffer(issueJson))
 	req.Header.Set("Authorization", "token "+os.Getenv("UPGITUSER"))
 	req.Header.Set( "Content-Type", "application/json")
 

@@ -44,6 +44,6 @@ type PullRequest struct {
 
 //The data needed to create a new issue at GitHub.
 type NewIssue struct {
-	Title       string `json:"title,omitempty"`
+	Title       string `json:"title"`
 	Description string `json:"body,omitempty"`
 }

@@ -41,13 +41,25 @@ func main() {
 		case "create":
 			issueTitle := ""
 			switch len(os.Args){
-			case 3: {
+			case 3:
 				issueTitle = os.Args[2]
-			}
 			default:
 				showHelp()
 			}
 			createNewIssue(issueTitle)
+		case "update":
+			switch len(os.Args) {
+			case 4:
+				updateType := os.Args[2]
+				issueNumber := os.Args[3]
+				updateType, err := validateUpdateType(updateType)
+				if err != nil {
+					showHelp()
+				}
+				updateIssue(issueNumber, updateType)
+			default:
+				showHelp()
+			}
 		default:
 			showHelp()
 		}
