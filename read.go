@@ -1,10 +1,10 @@
 package main
 
 import (
-	"book/ch4/upgit/github"
 	"fmt"
 	"log"
 	"os"
+	"upgit-simple/github"
 )
 
 //Writes out detailed information about the GitHub issue number passed in.

@@ -1,7 +1,7 @@
 package main
 
 import (
-	"book/ch4/upgit/github"
+	"upgit-simple/github"
 	"bufio"
 	"fmt"
 	"log"
